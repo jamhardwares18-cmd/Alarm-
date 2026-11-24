@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">தமிழ் அலாரம்</string>
+    <string name="title">தமிழ் அலாரம்</string>
+    <string name="hourly_switch">ஒவ்வொரு மணிக்கும் நேரம் + வசனம் சொல்லு</string>
+    <string name="test_now">இப்போது சோதனை செய்</string>
+    <string name="edit_verses">வசனங்களை மாற்று (24 மணி)</string>
+    <string name="alarms_title">அலாரங்கள்</string>
+    <string name="add_alarm">+ அலாரம் சேர்</string>
+    <string name="delete">நீக்கு</string>
+    <string name="no_alarms">அலாரம் எதுவும் இல்லை</string>
+    <string name="verses_note">ஒவ்வொரு மணிக்கும் உங்கள் தமிழ் கத்தோலிக்க (R.C.) திருவிவிலியத்திலிருந்து வசனத்தின் முகவரியும் வாசகமும் இங்கே ஒட்டவும். வாசகம் காலியாக இருந்தால் முகவரி மட்டும் சொல்லப்படும்.</string>
+    <string name="save">சேமி</string>
+    <string name="saved">சேமிக்கப்பட்டது</string>
+</resources>

@@ -1,0 +1,52 @@
+name: Build APK
+
+on:
+  push:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # If you uploaded the project as a .zip file (easy on phone), unpack it here.
+      - name: Unpack project zip if needed
+        run: |
+          if [ ! -f settings.gradle.kts ]; then
+            f=$(ls *.zip | head -n1)
+            mkdir -p /tmp/proj
+            unzip -q "$f" -d /tmp/proj
+            d=$(dirname "$(find /tmp/proj -name settings.gradle.kts | head -n1)")
+            cp -r "$d"/. .
+          fi
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - uses: gradle/actions/setup-gradle@v3
+        with:
+          gradle-version: '8.5'
+
+      - name: Build debug APK
+        run: gradle assembleDebug --no-daemon --stacktrace
+
+      - name: Rename APK
+        run: cp app/build/outputs/apk/debug/app-debug.apk TamilAlarm.apk
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: TamilAlarm-apk
+          path: TamilAlarm.apk
+
+      - name: Publish to Releases
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ github.run_number }}
+          name: Tamil Alarm v${{ github.run_number }}
+          files: TamilAlarm.apk
